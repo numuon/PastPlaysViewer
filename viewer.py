@@ -41,6 +41,12 @@ while True:
    if(pygame.K_UP in keysdown):
       currentplay -= 1
       currentplay = max(currentplay, 0)
+   if(pygame.K_RIGHT in keysdown):
+      currentplay += 5
+      currentplay = min(currentplay, len(log)-1)
+   if(pygame.K_LEFT in keysdown):
+      currentplay -= 5
+      currentplay = max(currentplay, 0)
 
    playerlocations = ["??", "??", "??", "??", "??"]
    for p in range(0, min(currentplay+1, len(log))):
