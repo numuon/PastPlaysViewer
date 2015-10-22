@@ -13,7 +13,7 @@ maprect = map.get_rect()
 size = maprect.width+200, maprect.height+40
 screen = pygame.display.set_mode(size)
 
-font = pygame.font.SysFont("monospace", 15)
+font = pygame.font.SysFont("Ubuntu Mono", 15)
 currentplay = 0
 keysdown = []
 pygame.key.set_repeat(360, 25)
@@ -60,6 +60,8 @@ while True:
          else: p -= 5*int(log[p][2])
       if p >= 0:
          playerlocations[player] = log[p][1:3]
+         if playerlocations[player] == "TP":
+            playerlocations[player] = "CD"
 
    for i in range(0, len(playerimages)):
       offset = playerlocations[:i].count(playerlocations[i])
