@@ -62,9 +62,10 @@ while True:
          playerlocations[player] = log[p][1:3]
 
    for i in range(0, len(playerimages)):
+      offset = playerlocations[:i].count(playerlocations[i])
       for p in places:
          if(p[1] == playerlocations[i]):
-            playerx[i], playery[i] = p[2], p[3]
+            playerx[i], playery[i] = p[2]+4*offset, p[3]+4*offset
                   
    screen.fill((0, 0, 0))
    screen.blit(map, maprect)
