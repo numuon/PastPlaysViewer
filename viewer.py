@@ -49,48 +49,17 @@ while True:
       currentplay = max(currentplay, 0)
 
    playerlocations = ["??", "??", "??", "??", "??"]
-   for p in range(0, min(currentplay+1, len(log))):
-      if(log[p][0] == "G"): player = 0
-      elif(log[p][0] == "S"): player = 1
-      elif(log[p][0] == "H"): player = 2
-      elif(log[p][0] == "M"): player = 3
-      elif(log[p][0] == "D"): player = 4
-
-      # the player who's turn it is right now
-      currentPlayer = log[currentplay][0]
-
-      # moveback required to get to the most recent dracula move
-      if(currentPlayer == "G"): moveBack = 1
-      elif(currentPlayer == "S"): moveBack = 2
-      elif(currentPlayer == "H"): moveBack = 3
-      elif(currentPlayer == "M"): moveBack = 4
-      elif(currentPlayer == "D"): moveBack = 0
-      
-      # get current loc
-      currentLoc = str(log[p][1]) + str(log[p][2])
-
-      # if it is dracula's move
-      if (player == 4):
-
-         # if hide, keep current position
-         if (currentLoc == "HI"):
-            currentLoc = playerlocations[4]
-         elif (currentLoc[1].isdigit()):
-            # if some kind of double back
-
-            backdistance = int(currentLoc[1]) # num of DB
-
-            # move p back from currentplay to the most recent drac move
-            # and then the required number of DB distance
-            p = currentplay - moveBack - (5 * backdistance) 
-
-            # update currentloc
-            currentLoc = str(log[p][1]) + str(log[p][2])
-         else:
-            if (currentLoc == "TP"): currentLoc == "CD" 
-
-      # save player current location in playerlocations array
-      playerlocations[player] = currentLoc
+   for p in range(max(0, currentplay-4), currentplay+1):
+      if log[p][0] == "G": player = 0
+      elif log[p][0] == "S": player = 1
+      elif log[p][0] == "H": player = 2
+      elif log[p][0] == "M": player = 3
+      elif log[p][0] == "D": player = 4
+      while p >= 0 and (log[p][1:3] == "HI" or log[p][2].isdigit()):
+         if log[p][1:3] == "HI": p -= 5
+         else: p -= 5*int(log[p][2])
+      if p >= 0:
+         playerlocations[player] = log[p][1:3]
 
    for i in range(0, len(playerimages)):
       for p in places:
