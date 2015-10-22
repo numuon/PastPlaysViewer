@@ -16,6 +16,7 @@ screen = pygame.display.set_mode(size)
 font = pygame.font.SysFont("monospace", 15)
 currentplay = 0
 keysdown = []
+pygame.key.set_repeat(360, 25)
 
 clock = pygame.time.Clock()
 
@@ -29,10 +30,10 @@ places = [["Adriatic Sea", "AS",584,428], ["Alicante", "AL",217,538], ["Amsterda
 
 while True:
    milliseconds = clock.tick(20) 
+   keysdown = []
    for event in pygame.event.get():
       if event.type == pygame.QUIT: sys.exit()
       elif event.type == pygame.KEYDOWN: keysdown.append(event.key)
-      elif event.type == pygame.KEYUP: keysdown.remove(event.key)
    
    if(pygame.K_DOWN in keysdown):
       currentplay += 1
