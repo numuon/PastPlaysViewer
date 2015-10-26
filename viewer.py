@@ -1,3 +1,4 @@
+#!python3
 # Fury of Dracula game log viewer
 # Luke Fitzpatrick, 2015
 import sys, pygame
