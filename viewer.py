@@ -81,7 +81,7 @@ while True:
    y = 0
    start = max(0, currentplay-8)
    end = start + (maprect.height/20)
-   for i in range(start, min(len(log), end)):
+   for i in range(start, int(min(len(log), end))):
       colour = (255, 255, 255)
       if(i == currentplay): colour = (255, 100, 100)
       label = font.render("Play "+str(i)+": "+log[i],1,colour)
